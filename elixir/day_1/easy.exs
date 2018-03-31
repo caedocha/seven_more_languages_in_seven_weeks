@@ -18,6 +18,3 @@ String.to_atom("super_cool")
 # Check is var is an atom
 is_atom("Cool") # false
 is_atom(:cool) # true
-
-
-
