@@ -13,3 +13,6 @@ defmodule Sentences do
   end
 
 end
+
+sentences = {"See Spot.", {"See Spot sit.", "See Spot run."}}
+Sentences.traverse(sentences)
