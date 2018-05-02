@@ -4,6 +4,18 @@ defmodule VideoStore.Concrete do import StateMachine.Behavior
   def lose(video), do: fire(state_machine, video, :lose)
   def find(video), do: fire(state_machine, video, :find)
 
+  def before_rent() do
+    IO.puts "---- CALLING RENT BEFORE HOOK"
+  end
+
+  def after_rent() do
+    IO.puts "++++ CALLING RENT AFTER HOOK"
+  end
+
+  def after_find() do
+    IO.puts "**** CALLING FIND AFTER HOOK"
+  end
+
   def state_machine do
     [
       available: [

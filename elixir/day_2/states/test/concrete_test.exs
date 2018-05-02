@@ -3,32 +3,32 @@ defmodule ConcreteTest do
   import Should
 
   should "update count" do
-    rented_video = VideoStore.renting(video)
+    rented_video = VideoStore.renting(video())
     assert rented_video.times_rented == 1
   end
 
   should "rent video" do
-    rented_video = VideoStore.Concrete.rent video
+    rented_video = VideoStore.Concrete.rent video()
     assert :rented = rented_video.state
     assert 1 == Enum.count(rented_video.log)
   end
 
   should "handle multiple transitions" do
     import VideoStore.Concrete
-    vid = video |> rent |> return |> rent |> return |> rent
+    vid = video() |> rent |> return |> rent |> return |> rent
     assert 5 == Enum.count(vid.log)
     assert 3 == vid.times_rented
   end
 
   should "lose a video" do
     import VideoStore.Concrete
-    vid = video |> rent |> lose
+    vid = video() |> rent |> lose
     assert :lost == vid.state
   end
 
   should "find a lost video" do
     import VideoStore.Concrete
-    vid = video |> rent |> lose |> find
+    vid = video() |> rent |> lose |> find
     assert :found == vid.state
   end
 
